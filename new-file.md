@@ -1,1 +1,2 @@
-[link3](test-file.md)
+[link3](https:// google.com)
+[link4](test-file.md)
