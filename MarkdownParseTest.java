@@ -1,5 +1,9 @@
 import static org.junit.Assert.*;
 import org.junit.*;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MarkdownParseTest {
     @Test
@@ -12,6 +16,10 @@ public class MarkdownParseTest {
      * assertequals [https://something.com, some-page.html] 
     */
     public void getLinksTester() throws IOException{
-        //assertEquals(MarkdownParse.main(testFile).links, expected);
+        String content = Files.readString(Path.of("test-file.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("https://something.com");
+        links.add("some-page.html");
+        assertEquals(MarkdownParse.getLinks(content), links);
     }
 }
