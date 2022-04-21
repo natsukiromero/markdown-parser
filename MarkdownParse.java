@@ -14,7 +14,7 @@ public class MarkdownParse {
         Scanner scnr = new Scanner(markdown);
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
-        while(scnr.hasNextLine()) { 
+        while(scnr.hasNextLine()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
@@ -26,13 +26,21 @@ public class MarkdownParse {
             }
 
             //check to make sure link is not an image
-            //the better indicator would be to look for an ! but idk how to do that yet
-            String type = markdown.substring(openBracket + 1, closeBracket);
-            Boolean isLink = type.contains("link");
+            Boolean isImage = false;
+            if(openBracket != 0) {
+                String type = markdown.substring(openBracket - 1, openBracket);
+                isImage = type.equals("!");
+            }
+            //check that link follows format []()
+            int format = openParen - closeBracket;
+            Boolean linkFollowsFormat = true;
+            if(format != 1) {
+                linkFollowsFormat = false;
+            }
             //check that link is a valid link
             String link = markdown.substring(openParen + 1, closeParen);
             Boolean linkIsValid = link.contains(" ");
-            if(isLink == true && linkIsValid == false) {
+            if(isImage == false && linkIsValid == false && linkFollowsFormat == true) {
                 toReturn.add(link);
             }
             currentIndex = closeParen + 1;

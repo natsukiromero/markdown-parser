@@ -47,4 +47,62 @@ public class MarkdownParseTest {
         ArrayList<String> links = new ArrayList<String>();
         assertEquals(MarkdownParse.getLinks(content), links);
     }
+
+    @Test
+    /**tests test-file2.md*/
+    public void testFile2Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file2.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("https://something.com");
+        links.add("some-page.html");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests test-file3.md*/
+    public void testFile3Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file3.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+    
+    @Test
+    /**tests test-file4.md*/
+    public void testFile4Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file4.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests test-file5.md*/
+    public void testFile5Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file5.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests test-file6.md*/
+    public void testFile6Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file6.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests test-file7.md*/
+    public void testFile7Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file7.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests test-file8.md*/
+    public void testFile8Tester() throws IOException{
+        String content = Files.readString(Path.of("test-file8.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
 }
