@@ -13,13 +13,38 @@ public class MarkdownParseTest {
 
     @Test
     /**calls getLinks on test-file.md
-     * assertequals [https://something.com, some-page.html] 
+     * assertequals [https://something.com, some-thing.html] 
     */
-    public void getLinksTester() throws IOException{
+    public void testFileTester() throws IOException{
         String content = Files.readString(Path.of("test-file.md"));
         ArrayList<String> links = new ArrayList<String>();
         links.add("https://something.com");
-        links.add("some-page.html");
+        links.add("some-thing.html");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests new-file.md*/
+    public void newFileTester() throws IOException{
+        String content = Files.readString(Path.of("new-file.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("test-file.md");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests other-file.md */
+    public void otherFileTester() throws IOException{
+        String content = Files.readString(Path.of("other-file.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests another-file.md*/
+    public void anotherFileTester() throws IOException{
+        String content = Files.readString(Path.of("another-file.md"));
+        ArrayList<String> links = new ArrayList<String>();
         assertEquals(MarkdownParse.getLinks(content), links);
     }
 }
