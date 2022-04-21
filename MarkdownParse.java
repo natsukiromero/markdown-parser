@@ -1,47 +1,48 @@
 //https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+//https://github.com/BellaReal/markdown-parser/blob/main/MarkdownParse.java
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MarkdownParse {
 
-    public static ArrayList<String> getLinks(List<String> markdown) {
+    public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
+        Scanner scnr = new Scanner(markdown);
         // find the next [, then find the ], then find the (, then read link upto next )
-        for(String line: markdown) {
-            int currentIndex = 0;
-            while(currentIndex < line.length()) {
-                int openBracket = line.indexOf("[", currentIndex);
-                int closeBracket = line.indexOf("]", openBracket);
-                int openParen = line.indexOf("(", closeBracket);
-                int closeParen = line.indexOf(")", openParen);
-                toReturn.add(line.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
+        int currentIndex = 0;
+        while(scnr.hasNextLine()) { 
+            int openBracket = markdown.indexOf("[", currentIndex);
+            int closeBracket = markdown.indexOf("]", openBracket);
+            int openParen = markdown.indexOf("(", closeBracket);
+            int closeParen = markdown.indexOf(")", openParen);
+
+            // to handle case where one of them loops over the file again
+            if (openBracket < 0 || closeBracket < 0 || openParen < 0 || closeParen < 0) {
+                break;
             }
-            
+
+            //check that link is a valid link
+            String link = markdown.substring(openParen + 1, closeParen);
+            if(link.contains(" ") == false) {
+                toReturn.add(link);
+            }
+            currentIndex = closeParen + 1;
+            scnr.nextLine();
         }
+        scnr.close();
+
         return toReturn;
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         Path fileName = Path.of(args[0]);
-        List<String> lines = Files.readAllLines(fileName);
-        for(String line: lines) {
-            if(line.contains("[") == false) {
-            //if(line.isEmpty()){
-                lines.remove(line);
-            }
-        }
-        //only works if <br> included in md
-        /*for(int i =0; i<lines.size();i++) {
-            System.out.println(lines.get(i));
-        }*/
-        //ArrayList<String> links = getLinks(lines);
-	    //System.out.println(links);
+        String content = Files.readString(fileName);
+        ArrayList<String> links = getLinks(content);
+	    System.out.println(links);
     }
 }
