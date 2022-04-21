@@ -25,9 +25,14 @@ public class MarkdownParse {
                 break;
             }
 
+            //check to make sure link is not an image
+            //the better indicator would be to look for an ! but idk how to do that yet
+            String type = markdown.substring(openBracket + 1, closeBracket);
+            Boolean isLink = type.contains("link");
             //check that link is a valid link
             String link = markdown.substring(openParen + 1, closeParen);
-            if(link.contains(" ") == false) {
+            Boolean linkIsValid = link.contains(" ");
+            if(isLink == true && linkIsValid == false) {
                 toReturn.add(link);
             }
             currentIndex = closeParen + 1;
