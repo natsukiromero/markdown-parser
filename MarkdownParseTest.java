@@ -103,6 +103,7 @@ public class MarkdownParseTest {
     public void testFile8Tester() throws IOException{
         String content = Files.readString(Path.of("test-file8.md"));
         ArrayList<String> links = new ArrayList<String>();
+        links.add("some-page.html");
         assertEquals(MarkdownParse.getLinks(content), links);
     }
 }
