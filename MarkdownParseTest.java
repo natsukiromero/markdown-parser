@@ -111,6 +111,7 @@ public class MarkdownParseTest {
     public void testLab5Testing() throws IOException{
         String content = Files.readString(Path.of("lab5-testing.md"));
         ArrayList<String> links = new ArrayList<String>();
+        links.add("https://something.com");
         assertEquals(MarkdownParse.getLinks(content), links);
     }
 }
