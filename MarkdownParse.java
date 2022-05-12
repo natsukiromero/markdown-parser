@@ -43,7 +43,17 @@ public class MarkdownParse {
             if(link.contains(" ") || link.contains("[") || link.contains("]")) {
                 linkIsValid = false;
             }
-            if(isImage == false && linkIsValid == true && linkFollowsFormat == true) {
+
+            //check that link is valid and will lead somewhere
+            String[] domainExt = {".com",".org",".edu",".net",".gov",".io",".k12",".mil",".uk",".ca"};
+            Boolean hasDomainExt = false;
+            for(int i = 0; i < domainExt.length; i++){
+                if(link.contains(domainExt[i]) && link.indexOf(domainExt[i]) != 0){
+                        hasDomainExt = true;
+                }
+            }
+
+            if(isImage == false && linkIsValid == true && linkFollowsFormat == true && hasDomainExt == true) {
                 toReturn.add(link);
             }
             currentIndex = closeParen + 1;
