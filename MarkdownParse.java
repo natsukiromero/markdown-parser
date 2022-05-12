@@ -43,6 +43,9 @@ public class MarkdownParse {
             if(link.contains(" ") || link.contains("[") || link.contains("]")) {
                 linkIsValid = false;
             }
+            else if(link.length() == 0) {
+                linkIsValid = false;
+            }
 
             //check that link will lead somewhere
             String[] domainExt = {".com",".org",".edu",".net",".gov",".io",".k12",".mil",".uk",".ca", ".html", ".md"};
