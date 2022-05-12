@@ -49,6 +49,7 @@ public class MarkdownParse {
 
             //check that link will lead somewhere
             String[] domainExt = {".com",".org",".edu",".net",".gov",".io",".k12",".mil",".uk",".ca", ".html", ".md"};
+            //array includes only a fraction of possible domain extensions
             Boolean hasDomainExt = false;
             for(int i = 0; i < domainExt.length; i++){
                 if(link.contains(domainExt[i]) && link.indexOf(domainExt[i]) != 0){
