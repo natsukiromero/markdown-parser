@@ -37,14 +37,14 @@ public class MarkdownParse {
             if(format != 1) {
                 linkFollowsFormat = false;
             }
-            //check that link is a valid link
+            //check that link is valid by checking the characters included
             String link = markdown.substring(openParen + 1, closeParen);
             Boolean linkIsValid = true;
             if(link.contains(" ") || link.contains("[") || link.contains("]")) {
                 linkIsValid = false;
             }
 
-            //check that link is valid and will lead somewhere
+            //check that link will lead somewhere
             String[] domainExt = {".com",".org",".edu",".net",".gov",".io",".k12",".mil",".uk",".ca", ".html", ".md"};
             Boolean hasDomainExt = false;
             for(int i = 0; i < domainExt.length; i++){
