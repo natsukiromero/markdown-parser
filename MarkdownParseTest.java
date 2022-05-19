@@ -12,6 +12,12 @@ public class MarkdownParseTest {
     }
 
     @Test
+    /**made with vimtutor */
+    public void subtraction(){
+	    assertEquals(1, 2 - 1);
+    }
+
+    @Test
     /**calls getLinks on test-file.md
      * assertequals [https://something.com, some-thing.html] 
     */
