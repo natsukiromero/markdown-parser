@@ -120,4 +120,37 @@ public class MarkdownParseTest {
         links.add("https://something.com");
         assertEquals(MarkdownParse.getLinks(content), links);
     }
+
+    @Test
+    /**tests snippet 1 for lab report 4*/
+    public void testSnippet1() throws IOException{
+        String content = Files.readString(Path.of("snippet1.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("'google.com");
+        links.add("google.com");
+        links.add("ucsd.edu");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests snippet 2 for lab report 4*/
+    public void testSnippet2() throws IOException{
+        String content = Files.readString(Path.of("snippet2.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("a.com");
+        links.add("a.com(())");
+        links.add("example.com");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
+
+    @Test
+    /**tests snippet 3 for lab report 4*/
+    public void testSnippet3() throws IOException{
+        String content = Files.readString(Path.of("snippet3.md"));
+        ArrayList<String> links = new ArrayList<String>();
+        links.add("https://www.twitter.com");
+        links.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        links.add("https://cse.ucsd.edu/");
+        assertEquals(MarkdownParse.getLinks(content), links);
+    }
 }
